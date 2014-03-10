@@ -32,7 +32,7 @@ public class SQLClient {
 	 * @throws Exception 
 	 */
 	public ArrayList<ArrayList<String>> getResults(String v_name) throws Exception {
-		String sql = "SELECT contactid,contactname,emailaddress,phone,street,city,zip,state,country  FROM contactstable where contactname like " + v_name + "ORDER BY contactid";
+		String sql = "SELECT contactid,contactname,emailaddress,phone,street,city,zip,state,country  FROM contactstable1 where contactname like " + v_name + "ORDER BY contactid";
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet results = null;
@@ -83,18 +83,18 @@ public class SQLClient {
 	 * @return List of Strings of text from PostgreSQL
 	 * @throws Exception 
 	 */
-	public Map<Integer,Map<String,String>>  getContactResults(String v_name, String column) throws Exception {
+	public Map<String,Map<String,String>>  getContactResults(String v_name, String column) throws Exception {
 		Random generator = new Random();
 		
-		//String sql = "SELECT contactid,contactname,emailaddress,phone,street,city,zip,state,country  FROM contactstable where lower(contactname)  ILIKE '" + v_name + "' ORDER BY contactid";
-		String sql = "SELECT contactid,contactname,emailaddress,phone,street,city,zip,state,country  FROM contactstable where lower("+column+")  ILIKE '" + v_name + "' ORDER BY contactid";
+		//String sql = "SELECT contactid,contactname,emailaddress,phone,street,city,zip,state,country  FROM contactstable1 where lower(contactname)  ILIKE '" + v_name + "' ORDER BY contactid";
+		String sql = "SELECT contactid,contactname,emailaddress,phone,street,city,zip,state,country  FROM contactstable1 where lower("+column+")  ILIKE '" + v_name + "%' ORDER BY contactid";
 
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet results = null;
 		
 		Map<String,String> resultParamsMap = new HashMap<String,String>();
-		Map<Integer,Map<String,String>> resultParamsListMap = new HashMap<Integer,Map<String,String>> ();
+		Map<String,Map<String,String>> resultParamsListMap = new HashMap<String,Map<String,String>> ();
 		//ArrayList<Map<String,String>> resultParamsList = new ArrayList<Map<String,String>>();
 
 		
@@ -110,9 +110,10 @@ public class SQLClient {
 		     
 			
 			//resultParamsMap.put("field","value");
-			
+			int i=0;
 			while (results.next()) {
-				
+				i++;
+				 System.out.println("Creating new hashmap - results - " + i); 
 			resultParamsMap=new HashMap<String,String>();
 //			resultParamsMap.put("contactid",results.getString("contactid"));
 //			resultParamsMap.put("contactname",results.getString("contactname"));
@@ -131,7 +132,7 @@ public class SQLClient {
 				resultParamsMap.put("Zip",results.getString("zip"));
 				resultParamsMap.put("State",results.getString("state"));
 				resultParamsMap.put("Country",results.getString("country"));
-				resultParamsListMap.put( generator.nextInt(10), resultParamsMap);
+				resultParamsListMap.put( new Integer(generator.nextInt(100)).toString(), resultParamsMap);
 				//resultParamsList.add();
 			
 	
@@ -188,41 +189,41 @@ public class SQLClient {
 			connection = getConnection();
 			connection.setAutoCommit(false);
 			String sql="";
-			sql = "INSERT INTO contactstable (contactid, contactname, emailaddress, phone, street, city, zip, state, country) VALUES (1001,'Minu Theresa Thomas','minutheresathomas@gmail.com', '4085250000', '1550 Technology Dr','San Jose', '95100', 'CA', 'United States')";
+			sql = "INSERT INTO contactstable1 (contactid, contactname, emailaddress, phone, street, city, zip, state, country) VALUES (1001,'Minu Theresa Thomas','minutheresathomas@gmail.com', '4085250000', '1550 Technology Dr','San Jose', '95100', 'CA', 'United States')";
 			statement = connection.prepareStatement(sql);
 			statement.execute();	
 			statement.close();
 			connection.commit();
 			
-			sql = "INSERT INTO contactstable (contactid, contactname, emailaddress, phone, street, city, zip, state, country) VALUES (1002,'Sujith Joseph','sujithjoseph@gmail.com', '4085252652', '1550 Technology Dr','San Jose', '95110', 'CA', 'United States')";
+			sql = "INSERT INTO contactstable1 (contactid, contactname, emailaddress, phone, street, city, zip, state, country) VALUES (1002,'Sujith Joseph','sujithjoseph@gmail.com', '4085252652', '1550 Technology Dr','San Jose', '95110', 'CA', 'United States')";
 
 			statement = connection.prepareStatement(sql);
 			statement.execute();
 			statement.close();
 			connection.commit();
 			
-			sql = "INSERT INTO contactstable (contactid, contactname, emailaddress, phone, street, city, zip, state, country) VALUES (1003,'Suresh Joseph','sureshjoseph@gmail.com', '4087927377', '30 Independence Way','Jersey City', '10001', 'NJ', 'United States')";
+			sql = "INSERT INTO contactstable1 (contactid, contactname, emailaddress, phone, street, city, zip, state, country) VALUES (1003,'Suresh Joseph','sureshjoseph@gmail.com', '4087927377', '30 Independence Way','Jersey City', '10001', 'NJ', 'United States')";
 
 			statement = connection.prepareStatement(sql);
 			statement.execute();
 			statement.close();
 			connection.commit();
 			
-			sql = "INSERT INTO contactstable (contactid, contactname, emailaddress, phone, street, city, zip, state, country) VALUES (1004,'Sony Joseph','sonyjoseph@gmail.com', '4089057377', '30 Church Rd','Urbana', '70001', 'IL', 'United States')";
+			sql = "INSERT INTO contactstable1 (contactid, contactname, emailaddress, phone, street, city, zip, state, country) VALUES (1004,'Sony Joseph','sonyjoseph@gmail.com', '4089057377', '30 Church Rd','Urbana', '70001', 'IL', 'United States')";
 
 			statement = connection.prepareStatement(sql);
 			statement.execute();
 			statement.close();
 			connection.commit();
 			
-			sql = "INSERT INTO contactstable (contactid, contactname, emailaddress, phone, street, city, zip, state, country) VALUES (1005,'Dennis Thomas','dennisthomas@gmail.com', '4087998664', '2nd Main St, MG Rd','Bangalore', '695011', 'Karnataka', 'India')";
+			sql = "INSERT INTO contactstable1 (contactid, contactname, emailaddress, phone, street, city, zip, state, country) VALUES (1005,'Dennis Thomas','dennisthomas@gmail.com', '4087998664', '2nd Main St, MG Rd','Bangalore', '695011', 'Karnataka', 'India')";
 
 			statement = connection.prepareStatement(sql);
 			statement.execute();
 			statement.close();
 			connection.commit();
 			
-			return 3;
+			return 5;
 		} catch (SQLException e) {
 			SQLException next = e.getNextException();
 			
@@ -284,8 +285,8 @@ public class SQLClient {
 	 * @throws Exception
 	 */
 	private void createTable() throws Exception {
-		String sql = "CREATE TABLE IF NOT EXISTS contactstable (" +
-						"contactid integer NOT NULL, " +
+		String sql = "CREATE TABLE IF NOT EXISTS contactstable1 (" +
+						"contactid integer unique NOT NULL, " +
 						"contactname text," +
 						"emailaddress text," +
 						"phone text," +
@@ -302,6 +303,7 @@ public class SQLClient {
 			connection = getConnection();
 			statement = connection.prepareStatement(sql);
 			statement.executeUpdate();
+			addEmployees();
 		} finally {			
 			if (statement != null) {
 				statement.close();

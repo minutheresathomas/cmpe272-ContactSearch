@@ -25,10 +25,10 @@
       <div class="text-center">
         <h1><a href="/">Contact Search</a></h1>
         <p>
-        <form action="/contactsearch" method="POST" enctype="multipart/form-data">
+       <!-- <form action="/contactsearch" method="POST" enctype="multipart/form-data">
         <input type="submit" value="Initialize"/>
         </form>
-        </p>
+        </p>  -->
         <p>
           <form action="/contactsearch" method="GET" enctype="multipart/form-data">
             Enter Text:
@@ -37,9 +37,10 @@
   <option selected="selected" value="contactname" >Name</option>
   <option value="emailaddress">Email Address</option>
   <option value="phone">Phone</option>
+   <option value="street" >Street</option>
   <option value="city" >City</option>
    <option value="zip">Zip</option>
-  <option value="state">Stage</option>
+  <option value="state">State</option>
   <option value="country" >Country</option>
 </select>	
 		
@@ -59,7 +60,7 @@
       <table class="table">
       <% 
       
-  	Map<Integer,Map<String,String>> resultParamsListMap = (Map<Integer,Map<String,String>>) request.getAttribute("result");
+  	Map<String,Map<String,String>> resultParamsListMap = (Map<String,Map<String,String>>) request.getAttribute("result");
 
     //  List resultParamsList = (ArrayList)request.getAttribute("result");
       
@@ -76,8 +77,8 @@
   		 
   			Iterator iter = resultParamsListMap.keySet().iterator();
 	while(iter.hasNext()) {
-    Integer key = (Integer)iter.next();
-    Map resultParamsMap = (Map<String,String>)resultParamsListMap.get(key);
+    String key = (String)iter.next();
+    Map<String,String> resultParamsMap = (Map<String,String>)resultParamsListMap.get(key);
    // System.out.println("key,val: " + key + "," + val);
 
   			
@@ -87,7 +88,7 @@
   {
 	  Iterator iter1 = resultParamsMap.keySet().iterator();
 		while(iter1.hasNext()) {
-	    String key1 = (String)iter.next();
+	    String key1 = (String)iter1.next();
 	    String value1 = (String)resultParamsMap.get(key1);
   
   
@@ -102,9 +103,10 @@
   
     </td></tr><%
 		}
-		}
+	 	
+		} %>  <tr><td> <% out.println(" "); %></td><td><% out.println(" ");%> </td></tr> <% %>  <tr><td><% out.println(" "); %></td><td><% out.println(" ");%> </td></tr> <%
   	 }
-  	%>  <br><br> <%
+ 
   	}
   	else {
   		 %> <tr><td>Empty Results</td></tr><%

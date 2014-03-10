@@ -15,13 +15,13 @@ public class SearchServlet extends HttpServlet {
 
 	private SQLClient db = new SQLClient();
 	
-    @SuppressWarnings("unchecked")
+  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	System.out.println("SearchServlet");
     	String v_name = "";
     	String column = "contactname";
     	Map<String,String> resultParamsMap = new HashMap<String,String>();
-    	Map<Integer,Map<String,String>> resultParamsListMap = new HashMap<Integer,Map<String,String>> ();
+    	Map<String,Map<String,String>> resultParamsListMap = new HashMap<String,Map<String,String>> ();
 		//ArrayList<Map<String,String>> resultParamsList = new ArrayList<Map<String,String>>();
 
     	
@@ -65,8 +65,8 @@ public class SearchServlet extends HttpServlet {
     	System.out.println("Upload Servlet");
     	
     	try {
-					int rows = db.addEmployees();
-					String msg = "Added " + rows + " rows.";
+					//int rows = db.addEmployees();
+					String msg = "Added " + 5 + " rows.";
 					request.setAttribute("msg", msg);
 			
 		} catch (Exception e) {

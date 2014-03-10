@@ -1,0 +1,1 @@
+{"Name":"contactsearch","ServiceId":"com.ibm.cloudoe.orion.client.deploy","Params":{"Target":{"Url":"https://api.ng.bluemix.net","Org":"","Space":"dev"},"Name":"contactsearch"},"Url":"http://contactsearch.ng.bluemix.net","ManageUrl":"https://ace.ng.bluemix.net#/resources/appGuid=","Path":"","UrlTitle":"contactsearch","Type":"Cloud Foundry"}
